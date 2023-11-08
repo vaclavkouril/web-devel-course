@@ -1,0 +1,67 @@
+a:hover{
+  color: greenyellow;
+}
+p:last-child{
+  color: red;
+}
+body > #root.textbox{
+    border: 10px solid black;
+}
+
+#root {
+  max-width: 900px;
+  margin:auto;
+}
+
+nav, aside {
+  background: #ccccff;
+  width: 25%;
+}
+
+nav {
+  float: left;
+  line-height: 25px;
+}
+
+aside {
+  float: right;
+}
+
+article * {
+  text-align:justify;
+  text-indent: 30%;
+  font-size: 55px;
+  font-family: monospace;
+}
+
+article {
+  margin: 0 26% 0 26%; 
+  background-image: url("cat.jpeg");
+}
+header, footer {
+  min-height: 50px;
+  text-align: center;
+  background-color: #ffeebb;
+}
+
+header, article, nav, aside, footer {
+  border-radius: 7pt;
+}
+
+h1 {
+  padding: 10%;
+  margin: 10px;
+  font-family: monospace;
+}
+
+li {
+   padding: 0 5px;
+}
+
+aside > ul{
+  font-size: 5px;
+}
+[class]{
+    background-color: green;
+}
+

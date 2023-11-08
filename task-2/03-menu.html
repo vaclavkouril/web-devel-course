@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS - Menu</title>   
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+
+/*
+ * TODO:
+ * If screen width > 768 
+ * - the content of the span elements is shown on hover next to the li element
+ */
+
+.menu ul {
+  padding-left: 0;
+}
+
+.menu ul > li {
+  margin: 2em 0;
+  border: 1px solid black;
+  padding: 16px;
+  cursor: pointer;
+}
+.menu ul > li > i {display: none;}
+.menu ul {
+  padding-left: 0;
+}
+
+.menu ul > li:hover{
+  background-color: gray;
+}
+
+@media (min-width: 768px) { 
+  .menu ul > li {
+    text-align: center;
+    position: relative; 
+  }
+  .menu ul > li > i {
+    display: initial; 
+    font-size: 2em;
+  }
+  
+  .menu ul > li:hover > span{
+    
+      display: absolute;
+      left: 10%;
+  }
+  .menu ul > li > span {  
+    display: none; 
+  }
+}
+
+@media (min-width: 1200px) { 
+  .menu ul > li > i { 
+    width: 1em; 
+  }
+  .menu span{
+    display: initial;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="menu" style="max-width: 500px;">
+    <ul>
+      <li>
+      <i class="fa fa-plus"></i>
+      <span>
+        Create new pipeline
+      </span>
+      </li>
+      <li>
+      <i class="fa fa-caret-right"></i>
+      <span>
+        Execute pipeline
+      </span>
+      </li>
+      <li>
+      <i class="fa fa-comment-o"></i>
+      <span>
+        What is a pipeline?
+      </span>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

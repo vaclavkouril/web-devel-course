@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+  <title>CSS example</title>
+  <style type="text/css">
+/* Use the "color" CSS property to set given text colors 
+  for the following elements: 
+*/
+/* TODO: make color of all headings navy */
+    h1,h2,h3,h4,h5,h6{
+      color: navy
+    }
+/* TODO: make navigation links (i.e. links in the navigation div) green */
+    #navigation a{
+      color: green
+    }
+/* TODO: make second-level list items (i.e. items of a nested list) lime */
+    ul > li ul > li {
+      color: lime
+    }
+/* TODO: make all hyperlinks with absolute addresses pink */
+    a[href^="http"]{
+      color: pink
+    }
+/* TODO: 
+  make all links (i.e. including navigation links) red when hovered 
+  over with a mouse */
+    a:hover,
+      #navigation a:hover{
+        color: red;
+    }
+/* TODO: make all odd table lines orange */
+    table tr:nth-of-type(2n-1){
+      color: orange;
+    }
+/* TODO: make all other text dimgray */
+    body{
+      color: dimgray;
+    }
+  </style>
+</head>
+<body>
+
+<div id="content">
+  <h1>CSS Cheat Sheet</h1>
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">Reference on MDN</a></p>
+
+  <!-- The navigation div: -->
+  <div id="navigation">
+    <h2>Navigation</h2>
+    <ul>
+      <li>Basics
+        <ul>
+          <li><a href="#basic">Basic selectors</a> section</li>
+          <li><a href="#combinators">Combinators</a> section</li>
+        </ul>
+      </li>
+      <li><a href="#attribute">Attribute Selectors</a> section</li>
+      <li><a href="#pseudo-classes">Pseudo Classes</a> section</li>
+      <li><a href="#pseudo-elements">Pseudo Elements</a> section</li>
+      <li>CSS properties
+        <ul>
+          <li><a href="#text-properties">Text Styling</a> section</li>
+          <li><a href="#box-properties">Box Model</a> section</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>Basics</h2>
+  <h3 id="basic">Basic Selectors</h3>
+  <table>
+    <tr>
+      <th>Selector example</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>all elements</td>
+    </tr>
+    <tr>
+      <td>.my-class</td>
+      <td>elements with class <code>my-class</code></td>
+    </tr>
+    <tr>
+      <td>#my-id</td>
+      <td>elemens with id <code>my-id</code></td>
+    </tr>
+    <tr>
+      <td>div</td>
+      <td>all <code>&lt;div&gt;</code> elements</td>
+    </tr>
+  </table>
+
+  <h3 id="combinators">Combinators</h3>
+  <table>
+    <tr>
+      <th>Selector example</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>div, p</td>
+      <td>all <code>&lt;div&gt;</code> and <code>&lt;p&gt;</code> elements</td>
+    </tr>
+    <tr>
+      <td>div p</td>
+      <td>all <code>&lt;p&gt;</code> elements that are descendants of <code>&lt;div&gt;</code></td>
+    </tr>
+    <tr>
+      <td>div > p</td>
+      <td>all <code>p</code> elements that are direct descendants of <code>&lt;div&gt;</code></td>
+    </tr>
+    <tr>
+      <td>div + p</td>
+      <td>all <code>&lt;p&gt;</code> elements that a next sibling of <code>&lt;div&gt;</code></td>
+    </tr>
+    <tr>
+      <td>div.my-class:hover</td>
+      <td>all <code>div</code> elements with class <code>my-class</code> and pseudo-class <code>hover</code></td>
+    </tr>
+  </table>
+  <h2 id="#attribute">Attribute Selectors</h2>
+  <table>
+    <tr>
+      <th>Selector example</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>[attr]</td>
+      <td>element with attribute <code>attr</code></td>
+    </tr>
+    <tr>
+      <td>[attr=value]</td>
+      <td>element with attribute <code>attr</code> whose value <code>value</code></td>
+    </tr>
+    <tr>
+      <td>[attr^=value]</td>
+      <td>element with attribute <code>attr</code> whose value starts with <code>value</code></td>
+    </tr>
+    <tr>
+      <td colspan="2">&hellip;</td>
+    </tr>
+  </table>
+
+  <h2 id="pseudo-classes">Pseudo-classes</h2>
+  <table>
+    <tr>
+      <th>Selector example</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>:hover</td>
+      <td>element over which a mouse cursor hovers</td>
+    </tr>
+    <tr>
+      <td>:focus</td>
+      <td>element with focus</td>
+    </tr>
+    <tr>
+      <td>:disabled</td>
+      <td>disabled element (e.g. <code>&lt;input&gt;</code>)</td>
+    </tr>
+    <tr>
+      <td>:visited</td>
+      <td>visited hyperlink</td>
+    </tr>
+    <tr>
+      <td>:target</td>
+      <td>element that matches fragment part of current URL</td>
+    </tr>
+    <tr>
+      <td>:first-child</td>
+      <td>element which is the first child of its parent</td>
+    </tr>
+    <tr>
+      <td>:nth-child(3n+2)</td>
+      <td>every third child element of a parent, starting with the second child (i.e. child 2, 5, 8, &hellip;)</td>
+    </tr>
+    <tr>
+      <td>:not(selector)</td>
+      <td>elements which do not match <code>selector</code></td>
+    </tr>
+    <tr>
+      <td colspan="2">&hellip;</td>
+    </tr>
+  </table>
+
+  <h2 id="pseudo-elements">Pseudo-classes</h2>
+  <table>
+    <tr>
+      <th>Selector example</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>::before</td>
+      <td>a <em>virtual</em> firts child of the selected element</td>
+    </tr>
+    <tr>
+      <td>::after</td>
+      <td>a <em>virtual</em> last child of the selected element</td>
+    </tr>
+    <tr>
+      <td>::first-line</td>
+      <td>first line of text content of an element</td>
+    </tr>
+    <tr>
+      <td>::selection</td>
+      <td>the portion of a document that has been highlighted by the user</td>
+    </tr>
+    <tr>
+      <td colspan="2">&hellip;</td>
+    </tr>
+  </table>
+
+  <h2>CSS properties</h2>
+  <h3 id="text-properties">Text styling</h3>
+  <p>Useful CSS properties:</p>
+  <ul>
+    <li>color, font-family, text-decoration, font-weight, font-style, font-size</li>
+    <li>text-align, line-height, text-indent</li>
+    <li>background-color, bacgkround-image, background-repeat</li>
+    <li>content</li>
+    <li>&hellip;</li>
+  </ul>
+  <h3 id="box-properties">Box model</h3>
+  <p>Useful CSS properties:</p>
+  <ul>
+    <li>width, height, max-width, min-width, &hellip;</li>
+    <li>padding, padding-top, &hellip;</li>
+    <li>border, border-top, &hellip;</li>
+    <li>margin, margin-top, &hellip;</li>
+    <li>overflow, border-collapse, &hellip;</li>
+  </ul>
+</div>
+
+</body>
+</html>

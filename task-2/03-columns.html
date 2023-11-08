@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS - Columns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+/*
+ * TODO:
+ * Implement selectors:
+ * - '.row' is a flex container class, see HTML below and make it work
+ * - '.col-12' use 12/12 of width
+ * - '.col-md-6' if screen is wider then 768px use only 6/12 of width
+ * - '.col-md-12' if screen is wider then 768px use only 12/12 of width
+ * - '.col-xl-2' if screen is wider then 1200px use approximately only 2/12 (16%) of width
+ * - '.col-xl-4' if screen is wider then 1200px use approximately only 4/12 (32%) of width
+ * - '.col-xl-6' if screen is wider then 1200px use only 6/12 or width
+ */
+.row {flex: wrap}
+@media (min-width: 768px){
+  .col-md-6{ width: 50%;}
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="col-12 col-md-12 col-xl-2" style="background-color: red">
+      First column
+    </div>
+    <div class="col-12 col-md-6 col-xl-2" style="background-color: green">
+      Second column
+    </div>
+    <div class="col-12 col-md-6 col-xl-2" style="background-color: blue">
+      Third column
+    </div>
+    <div class="col-12 col-md-12 col-xl-6" style="background-color: orange">
+      Last column.
+      <div class="row">
+      <div class="col-12 col-xl-6" style="background-color: purple">
+        Last First
+      </div>
+      <div class="col-12 col-xl-6" style="background-color: violet">
+        Last Second
+      </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

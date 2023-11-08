@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form action="http://demo.stools.net" method="POST">
+            <label for="username">username</label>
+            <input id="username" type="text" name="username" value="" autofocus required>
+            <br/>
+            
+            <label for="email">email</label>
+            <input id="email" type="email" name="email" value="">
+            <br/>
+           
+            <label for="age">age</label>
+            <input id="age" type="number" name="age" value="0" min="0">
+            <br/>
+
+            <label for="comment">comment</label>
+            <textarea id="comment" name="comment" required></textarea>
+            <br/>
+            
+            <label for="publish">publish</label>
+            <select id="publish" name="publish">
+                <option value="public">public</option>
+                <option value="private" selected>private</option>
+            </select>
+            <br/>
+
+            <input type="submit" value="Submit">
+
+
+        </form>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "myCustomFont";
+  src:
+    local("Trickster"),
+    url("Trickster-Reg.otf") format("opentype");
+}
+
+body{
+    font-family: myCustomFont, sans-serif;
+}
+
+a {
+  transition: color 2s ease-in-out;
+  text-decoration: none;
+  color: green;
+}
+
+a:hover {
+  color: red;
+}
+
+#highlight {
+  transform: perspective(1000px) rotateX(30deg);
+  transform-origin: center top;
+}
+
+#highlight:target {
+  background-color: blue;
+}

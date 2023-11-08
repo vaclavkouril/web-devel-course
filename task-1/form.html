@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" name="full-name" value="" pattern="^[a-z]+(?:\s[a-z]+)+$" autofocus required>
+            <br/>
+            
+            <label for="age">Age:</label>
+            <input type="number" name="age" value="0" min="0" max="200">
+            <br/>
+
+            <label for="mail">Email:</label>
+            <input type="email" name="email" value="">
+            <br/>
+            
+            <input type="hidden" name="type" value="html-form-and-validation">
+
+            <input type="submit" value="Go">
+
+
+        </form>
+    </body>
+</html>

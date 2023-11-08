@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS - Container</title>
+  <style type="text/css">
+body { background-color: lightblue; }
+body > div { background-color: white; }
+/*
+ * TODO:
+ * Create CSS class for centred container.
+ *
+ * The container should take 100% width.
+ * The maximum width should be limited based on the screen width:
+ * - no limit for screen width < 768px
+ * -    720px for screen width > 768px
+ * -   1140px for screen width > 1200px
+ * Hint: 
+  default 100% mobile first
+*/
+
+@media (min-width: 1200px) { .container { background-color: red; } } }
+@media (min-width: px) { .container { background-color: red; } } }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="height: 240px;">
+      Content
+    </div>
+  </div>
+</body>
+</html>

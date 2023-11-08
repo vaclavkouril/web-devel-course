@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS - Mode</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+
+/* GRID */
+
+body {
+  margin: 0;
+}
+
+.header {
+  grid-area: header;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+@media (min-width: 768px) {
+  .layout {
+  display: grid;
+  grid-template-columns: 20em auto;
+  grid-template-rows: 4em auto 2em;
+  grid-template-areas:
+    "header header"
+    "menu main"
+    "footer footer";
+  }
+}
+
+/* MENU */
+
+.menu ul > li > i{
+  display: none;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menu ul > li {
+  margin: 2em 0;
+  padding: 16px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.menu ul > li:hover {
+  background-color: gray;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .menu ul > li {
+  text-align: center;
+  position: relative;
+  }
+  .menu ul > li > i {
+  display: initial;
+  font-size: 2em;
+   }
+  .menu ul > li > span {
+  display: none;
+  position: absolute;
+  left: calc(100% + 2em);
+  top: 0;
+  text-align: left;
+  }
+  .menu ul > li:hover > span {
+  display: initial;
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu ul > li > i {
+  display: initial;
+  width: 2em;
+  font-size: 1em;
+  }
+  .menu ul > li > span {
+  position: initial;
+  display: inline;
+  }
+}
+
+/* COLUMNS */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-md-6 { width: 50%; }
+  .col-md-12 { width: 50%; }
+}
+
+@media (min-width: 1200px) {
+  .col-xl-2 { width: 16%; }
+  .col-xl-4 { width: 32%; }
+  .col-xl-6 { width: 50%; }
+}
+
+/* CONTAINER */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) { .container { max-width: 720px; } }
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+
+/* Site specific. */
+
+p {
+  box-sizing: border-box;
+  padding: 0.5em;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .menu ul > li > span { background-color: white; }
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+/*
+ * TODO
+ * Implement dark mode, i.e if browser prefers-color-scheme is dark,
+ * than set text color close to white and background to black. Use
+ * --foreground-color and --background-color variables.
+ *
+ * Do not modify any of the CSS above this comment!
+ * You can modify the HTML bellow.
+ */
+
+:root {
+ --foreground-color-dark: white;
+ --background-color-dark: black;
+}
+
+@media (prefers-color-scheme: dark){
+ fore
+}
+
+  </style>
+</head>
+<body>
+  <div class="layout" >
+  <div class="header">
+    <h1>Our new website !</h1>
+  </div>
+  <div class="menu">
+    <div class="menu">
+    <ul>
+      <li>
+      <i class="fa fa-plus"></i>
+      <span>
+        Create new pipeline
+      </span>
+      </li>
+      <li>
+      <i class="fa fa-caret-right"></i>
+      <span>
+        Execute pipeline
+      </span>
+      </li>
+      <li>
+      <i class="fa fa-comment-o"></i>
+      <span>
+        What is a pipeline?
+      </span>
+      </li>
+    </ul>
+    </div>
+  </div>
+  <div class="main">
+    <div class="container row">
+    <p class="col-12">
+      Fusce consectetuer risus a nunc. Nulla non arcu lacinia neque faucibus fringilla. Quisque porta. Aliquam ante. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Aliquam erat volutpat. Nulla pulvinar eleifend sem. Duis risus. Integer pellentesque quam vel velit. Praesent dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Integer vulputate sem a nibh rutrum consequat. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Pellentesque ipsum. Quisque porta. Etiam dictum tincidunt diam.
+    </p>
+    <div class="col-12">
+      <div class="row">
+      <p class="col-12 col-md-6 col-xl-4" style="color:#022">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Nullam sit amet magna in magna gravida vehicula. Etiam dictum tincidunt diam. Aenean vel massa quis mauris vehicula lacinia. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Fusce aliquam vestibulum ipsum. Proin in tellus sit amet nibh dignissim sagittis. Phasellus et lorem id felis nonummy placerat. In enim a arcu imperdiet malesuada. Proin mattis lacinia justo. Praesent id justo in neque elementum ultrices. Nunc tincidunt ante vitae massa. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.
+      </p>
+      <p class="col-12 col-md-6 col-xl-4">
+        Phasellus et lorem id felis nonummy placerat. Proin mattis lacinia justo. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Nullam rhoncus aliquam metus. Aliquam id dolor. Maecenas libero. Pellentesque sapien. Aenean fermentum risus id tortor. Mauris elementum mauris vitae tortor. Aliquam erat volutpat. Curabitur vitae diam non enim vestibulum interdum. Integer in sapien. Curabitur sagittis hendrerit ante. In convallis. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sed ac dolor sit amet purus malesuada congue. Phasellus rhoncus. Sed ac dolor sit amet purus malesuada congue. Aenean fermentum risus id tortor.
+      </p>
+      <p class="col-12 col-md-6 col-xl-4">
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Aliquam erat volutpat. Nullam at arcu a est sollicitudin euismod. Cras pede libero, dapibus nec, pretium sit amet, tempor quis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent dapibus. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. In enim a arcu imperdiet malesuada. Fusce aliquam vestibulum ipsum. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus. Fusce nibh. Morbi scelerisque luctus velit. Integer lacinia. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Morbi scelerisque luctus velit. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Fusce tellus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Cras elementum.
+      </p>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="footer">
+    Copyright ....
+  </div>
+  </div>
+</body>
+</html>
