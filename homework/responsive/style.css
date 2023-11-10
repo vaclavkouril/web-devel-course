@@ -1,0 +1,58 @@
+#sidebar {
+  position: sticky;
+  width: 100%;
+  height: auto;
+  box-shadow: 10px 10px 10px 10px black;
+  top: 0;
+  left: 0;
+  background-color: white;
+  padding: 1px;
+  text-align: center;
+}
+nav > ul > li{
+  display: inline;
+  list-style-type: none;
+  
+}
+
+.floatright, .floatleft{
+  max-width: 400px;
+  float: center;
+}
+
+body{
+  min-width: 400px;
+}
+
+
+@media (min-width: 1000px) {
+  #sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+  }
+
+  #content{
+    position: absolute;
+    width: 800px;
+    left: count()
+  }
+
+
+  .floatleft {
+    float: left;
+    margin-right: 20px;
+  }
+    
+  .floatright {
+     float: right;
+     margin-left: 20px; 
+  }
+  nav > ul > li {
+    display: block;
+    list-style-type: disc;
+
+
+  }
+}
+
