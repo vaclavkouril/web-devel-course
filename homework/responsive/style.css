@@ -15,11 +15,12 @@ nav > ul > li{
   
 }
 
-.floatright, .floatleft{
+.floatright, .floatleft {
   max-width: 400px;
-  float: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 body{
   min-width: 400px;
 }
@@ -35,7 +36,8 @@ body{
   #content{
     position: absolute;
     width: 800px;
-    left: count()
+    left: calc(200px + 50vw - 500px);
+   
   }
 
 
