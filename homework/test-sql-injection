@@ -1,0 +1,1 @@
+";  INSERT INTO students(id,name,note) VALUES (186 , 'help' , 'identity'); --
