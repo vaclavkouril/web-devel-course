@@ -15,7 +15,7 @@ class Router
 		$controllerPathParts = $this->getPath($actionParts);
 		$controllerPath = "/";
 		if ($controllerPathParts !== 0){
-		$controllerPath = implode('/' , $controllerPathParts ) . "/"; }
+		$controllerPath = "/" . implode('/' , $controllerPathParts ) . "/"; }
         // Kontrola správného formátu parametru action
         if (count($actionParts) < 2 || !preg_match('/^[a-zA-Z_]+$/', $actionParts[count($actionParts)-2])) {
             $this->respondWithError(400, 'Bad Request');
@@ -29,6 +29,7 @@ class Router
 
         // Kontrola existence souboru kontroleru
 		if (!file_exists($controllerFilePath)) {
+			// var_dump($controllerInstance, $methodName, $controllerFilePath);
             $this->respondWithError(404, 'Not Found');
         }
 
@@ -37,6 +38,7 @@ class Router
 
         // Kontrola existence třídy kontroleru
 		if (!class_exists($controllerName)) {
+			// var_dump($controllerInstance, $methodName);
             $this->respondWithError(404, 'Not Found');
         }
 
@@ -45,6 +47,7 @@ class Router
 
         // Kontrola existence metody kontroleru
         if (!method_exists($controllerInstance, $methodName)) {
+			// var_dump($controllerInstance, $methodName);
 			$this->respondWithError(404, 'Not Found');
         }
 
