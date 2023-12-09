@@ -6,66 +6,64 @@ class Router
     public function dispatch()
 	{
 		
+		try{
 		$action = $this->getSanitizedInput('action');
-		$prefix = $this->getPrefix('action');
+		$prefix = $this->getPrefix();
 		
-        // Rozdělení parametru action na části
-        $actionParts = explode('/', $action);
+		if (!$action){
+            $this->respondWithError(400, 'Bad Request');
+		}
+		
+		$actionParts = explode('/', $action);
 
 		$controllerPathParts = $this->getPath($actionParts);
 		$controllerPath = "/";
 		if ($controllerPathParts !== 0){
 		$controllerPath = "/" . implode('/' , $controllerPathParts ) . "/"; }
-        // Kontrola správného formátu parametru action
         if (count($actionParts) < 2 || !preg_match('/^[a-zA-Z_]+$/', $actionParts[count($actionParts)-2])) {
             $this->respondWithError(400, 'Bad Request');
         }
 
-        // Získání názvu kontroleru a metody
         $controllerName = $this->sanitizeControllerName($actionParts[count($actionParts)-2]) . 'Controller';
 		$methodName = $prefix . $this->sanitizeMethodName($actionParts[count($actionParts)-1]);
+		
 		// Sestavení cesty k souboru kontroleru
 		$controllerFilePath = __DIR__ . "/controllers" . $controllerPath  . $this->sanitizeControllerName($actionParts[count($actionParts)-2]) . ".php";
 
-        // Kontrola existence souboru kontroleru
 		if (!file_exists($controllerFilePath)) {
 			// var_dump($controllerInstance, $methodName, $controllerFilePath);
             $this->respondWithError(404, 'Not Found');
         }
 
-        // Načtení souboru kontroleru
         require_once $controllerFilePath;
 
-        // Kontrola existence třídy kontroleru
 		if (!class_exists($controllerName)) {
 			// var_dump($controllerInstance, $methodName);
             $this->respondWithError(404, 'Not Found');
         }
 
-        // Vytvoření instance kontroleru
         $controllerInstance = new $controllerName();
 
-        // Kontrola existence metody kontroleru
         if (!method_exists($controllerInstance, $methodName)) {
 			// var_dump($controllerInstance, $methodName);
 			$this->respondWithError(404, 'Not Found');
         }
 
-        // Zavolání metody kontroleru
-        $result = $controllerInstance->$methodName();
+        $result = $this->callControllerMethod($controllerInstance, $methodName, $actionParts);
 
-        // Kontrola návratové hodnoty
         if ($result === null) {
             http_response_code(204);
         } else {
-            // Serializace a výpis návratové hodnoty ve formátu JSON
-            echo json_encode($result);
-        }	
+				$res = json_encode($result, JSON_THROW_ON_ERROR);
+				echo $res;
+			}
+		}catch (Exception $e) {
+            $this->respondWithError(500, "Internal Server Error");
+		}  
     }
 
     private function sanitizeControllerName($name)
     {
-        // Sanitize and validate the controller name (allow only letters and underscore)
         if (!preg_match('/^[a-zA-Z_]+$/', $name)) {
             $this->respondWithError(400, 'Bad Request');
             exit();
@@ -80,7 +78,7 @@ class Router
             exit();
 		}
 
-        return ucfirst($name);
+        return $name;
     }
 
     private function respondWithError($statusCode, $message)
@@ -92,7 +90,6 @@ class Router
 	
 	private function getSanitizedInput($key)
     {
-        // Získání a validace vstupu (GET nebo POST)
         $value = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
 
         if ($value === null) {
@@ -102,18 +99,13 @@ class Router
         return $value;
 	}
 	
-	private function getPrefix($key)
-    {
-		$value = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
-		$prefix = "get";
-
-        if ($value === null) {
-			$value = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
-			$prefix = "post";
-        }
-		if ($value === null){
-            $this->respondWithError(400, 'Bad Request');
-		}
+	private function getPrefix(){
+		if ($_SERVER["REQUEST_METHOD"] === "GET"){$prefix = "get";}
+		elseif ($_SERVER["REQUEST_METHOD"] === "POST") {$prefix = "post";}
+		else {
+		$this->respondWithError(400, 'Bad Request');
+		}	
+		
         return $prefix;
 	}
 
@@ -121,5 +113,37 @@ class Router
 		unset($arrayParts[count($arrayParts)-1]);
 		unset($arrayParts[count($arrayParts)-1]);
 		return $arrayParts;
+	}
+	
+	private function callControllerMethod($controllerInstance, $methodName, $actionParts)
+    {
+        $reflectionMethod = new ReflectionMethod($controllerInstance, $methodName);
+        
+        $parameters = $reflectionMethod->getParameters();
+
+        $arguments = [];
+
+        foreach ($parameters as $parameter) {
+            $parameterName = $parameter->getName();
+
+        $value = $this->getSanitizedInput($parameterName);
+        if ($value === null && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $value = $this->getPostInput($parameterName);
+        }
+
+        if ($value === null && $parameter->isOptional()) {
+            $value = $parameter->getDefaultValue();
+        } elseif ($value === null) {
+            $this->respondWithError(400, 'Bad Request');
+        }
+
+        $arguments[] = $value;        }
+
+        return $reflectionMethod->invokeArgs($controllerInstance, $arguments);
+		
+	}
+	private function getPostInput($key){
+		$value = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+		return $value;
 	}
 }
