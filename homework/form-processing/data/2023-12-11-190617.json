@@ -1,0 +1,13 @@
+{
+    "firstName": "aa",
+    "lastName": "sa",
+    "email": "sasaa@gma.cz",
+    "deliveryBoy": "fedex",
+    "unboxDay": 24,
+    "fromTime": null,
+    "toTime": 82,
+    "gifts": [
+        "points"
+    ],
+    "giftCustom": null
+}

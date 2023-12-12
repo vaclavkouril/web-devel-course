@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <title>JavaScript example</title>
+  <script>
+    const employees = [
+      "Philip Fry",
+      "Turanga Leela",
+      "Bender ",
+      "Amy Wong",
+      "Hermes Conrad",
+      "Professor Farnsworth",
+      "Doctor John Zoidberg",
+      "Lord Nibbler",
+      "Zapp Brannigan"
+    ];
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      const contentList = document.getElementById("content");
+
+      employees.forEach((employee, index) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = employee;
+        contentList.appendChild(listItem);
+      });
+  
+      const headings = document.querySelectorAll("h1");
+      headings.forEach((heading, index) => {
+        heading.textContent = `${index + 1}. ${heading.textContent}`;
+      });
+      const planTable = document.getElementById("plan-table");
+      for (let i = 0; i < 4; i++) {
+        const cloneRow = planTable.rows[0].cloneNode(true);
+        planTable.appendChild(cloneRow);
+      }
+
+      const links = document.querySelectorAll("a");
+      links.forEach(link => {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+        });
+      });
+    });
+
+  </script>
+</head>
+<body>
+
+<h1>Employees</h1>
+<ul id="content">
+</ul>
+
+<h1>Random link</h1>
+<p><a href="https://github.com/tkohout/OSTRAJava" onclick="return false;">Ostrajava</a></p>
+
+<h1>Delivery plan</h1>
+
+<table id="plan-table" style="border-spacing:0px; border-collapse:collapse;">
+  <tr>
+    <td>Plan: ___________________</td>
+    <td>Package: ___________________</td>
+    <td>From: ___________________</td>
+    <td>To: ___________________</td>
+  </tr>
+</table>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const planTable = document.getElementById("plan-table");
+      for (let i = 0; i < 4; i++) {
+        const cloneRow = planTable.rows[0].cloneNode(true);
+        planTable.appendChild(cloneRow);
+      }
+
+      const links = document.querySelectorAll("a");
+      links.forEach(link => {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+        });
+      });
+    });
+</script>
+</body>
+</html>
