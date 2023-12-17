@@ -1,0 +1,174 @@
+{
+  "title": "Example story",
+  "starting-site": "start",
+  "sites": {
+    "start": {
+      "type": "basic",
+      "text": "You are a student, your objective is to pass NSWI142.",
+      "actions": [
+        {
+          "text": "I'm up for the challenge.",
+          "site": "registration"
+        }, {
+          "text": "Not interested.",
+          "site": "ending-positive"
+        }
+      ]
+    },
+    "ending-positive": {
+      "type": "basic",
+      "text": "You live happily ever after."
+    },
+    "registration": {
+      "type": "input-string",
+      "text": "Please enter your name",
+      "label": "Name",
+      "target": "name",
+      "site": "registered"
+    },
+    "registered": {
+      "type": "basic",
+      "text": "Welcome {name}! The semestr is starting, are you ready?",
+      "actions": [
+        {
+          "text": "Ok",
+          "site": "semestr",
+          "effect": {
+            "week": "=1",
+            "points": "=0",
+            "knowledge": "=0"
+          }
+        }
+      ]
+    },
+    "semestr": {
+      "type": "basic",
+      "text": "It is {week} of the semestr. What you decide to do?",
+      "actions": [
+        {
+          "text": "Only do homeworks",
+          "site": "homework",
+          "effect": { "week": "+1" },
+          "visibility": { "week": "<6" }
+        }, {
+          "text": "Attend a seminar and do homeworks.",
+          "site": "seminar",
+          "effect": { "week": "+1" },
+          "visibility": { "week": "<6" }
+
+        }, {
+          "text": "Attend a lecture.",
+          "site": "lecture",
+          "effect": { "week": "+1" },
+          "visibility": { "week": "<6" }
+
+        }, {
+          "text": "Do something else ...",
+          "site": "something-else",
+          "effect": { "week": "+1" },
+          "visibility": { "week": "<6" }
+        }, {
+          "text": "End of semestr is here!",
+          "site": "semestr-end",
+          "visibility": { "week": ">5" }
+        }        
+      ]
+    },
+    "homework": {
+      "type": "basic",
+      "text": "You've worked hard and implemented the homework.",
+      "actions": [
+        {
+          "text": "Next week.",
+          "site": "semestr",
+          "effect": {
+            "points": "+2"
+          }
+        }
+      ]
+    },
+    "seminar": {
+      "type": "basic",
+      "text": "You've attended seminars and were able to solve the homeworks.",
+      "actions": [
+        {
+          "text": "Next week.",
+          "site": "semestr",
+          "effect": { "points": "+3" }
+        }
+      ]
+    },
+    "lecture": {
+      "type": "basic",
+      "text": "You spend most of the time during lecture on your phone anyway.",
+      "actions": [
+        {
+          "text": "Next week.",
+          "site": "semestr",
+          "effect": { "knowledge": "+1" }
+        }
+      ]
+    }, 
+    "something-else": {
+      "type": "basic",
+      "text": "What a great week of ...",
+      "actions": [
+        {
+          "text": "Next week.",
+          "site": "semestr"
+        }
+      ]
+    },
+    "semestr-end": {
+      "type": "basic",
+      "text": "End of semester is here you got {points} points from the semestr.",
+      "actions": [
+        {
+          "text": "I have enough points to get the grade without attending the exam.",
+          "site": "passed",
+          "visibility": { "points": ">7" }
+        }, {
+          "text": "Go to the exam.",
+          "site": "question-1"
+        }
+      ]
+    },
+    "passed": {
+      "type": "basic",
+      "text": "{name} passed NSIW142, congratulation!",
+      "actions": []
+    },
+    "failed": {
+      "type": "basic",
+      "text": "{name} failed NSIW142, better luck next time !",
+      "actions": [
+        {
+          "text": "Next try ..",
+          "site": "semestr",
+          "effect": { "week": "=1" }
+        }
+      ]
+    },
+    "question-1": {
+      "type": "basic",
+      "text": "What is \"1\" + 1 equal to?",
+      "actions": [
+        {
+          "text": "11",
+          "site": "failed"
+        }, {
+          "text": "2",
+          "site": "failed"
+        }, {
+          "text": "It depends ...",
+          "site": "passed",
+          "visibility": { "knowledge": "<4" }
+        }, {
+          "text": "It depends ... - you have strong feeling this should be the right question",
+          "site": "passed",
+          "visibility": { "knowledge": ">3" }
+        }
+      ]
+    }
+  }
+}
