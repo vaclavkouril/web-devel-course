@@ -16,22 +16,24 @@ function renderHeader($title){
 
 function renderBasicSite($site, $statistics) {
     echo "<div class='site'>";
-    echo "<p>" . substituteText($site['text'], $statistics) . "</p>";
+    echo "<div class='content'>" . substituteText($site['text'], $statistics) . "</div>";
     if (!empty($site['actions'])) {
+        echo "<ul class='actions'>";
         foreach ($site['actions'] as $action) {
             if (isActionVisible($action, $statistics)) {
                 $newStatistics = applyEffects($action['effect'], $statistics);
-                echo "<a href='?" . http_build_query(['site' => $action['site']] + buildStatisticsQuery($newStatistics)) . "'>" . substituteText($action['text'], $newStatistics) . "</a><br>";
+                echo "<li><a href='?" . http_build_query(['site' => $action['site']] + buildStatisticsQuery($newStatistics)) . "'>" . substituteText($action['text'], $newStatistics) . "</a></li>";
             }
         }
+        echo "</ul>";
     }
     echo "</div>";
 }
 
 function renderInputStringSite($site, $statistics, $currentSite) {
     echo "<div class='site'>";
-    echo "<p>" . substituteText($site['text'], $statistics) . "</p>";
-    echo "<form action='' method='get'>";
+    echo "<div class='content'><p>" . substituteText($site['text'], $statistics) . "</p>";
+    echo "<form class='form' action='' method='get'>";
     echo "<input type='hidden' name='site' value='" . htmlspecialchars($site['site']) . "'>";
     foreach ($statistics as $key => $value) {
         echo "<input type='hidden' name='statistics." . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
@@ -39,10 +41,9 @@ function renderInputStringSite($site, $statistics, $currentSite) {
     echo "<label for='inputString'>" . htmlspecialchars($site['label']) . "</label>";
     echo "<input type='text' id='inputString' name='statistics." . htmlspecialchars($site['target']) . "'>";
     echo "<input type='submit' value='Submit'>";
-    echo "</form>";
+    echo "</form></div>";
     echo "</div>";
 }
-
 
 function substituteText($text, $statistics) {
     $parts = explode('{', $text);
