@@ -30,7 +30,7 @@ function renderBasicSite($site, $statistics) {
     echo "</div>";
 }
 
-function renderInputStringSite($site, $statistics, $currentSite) {
+function renderInputStringSite($site, $statistics) {
     echo "<div class='site'>";
     echo "<div class='content'><p>" . substituteText($site['text'], $statistics) . "</p>";
     echo "<form class='form' action='' method='get'>";
@@ -187,7 +187,7 @@ switch ($currentSite['type']) {
         renderBasicSite($currentSite, $statistics);
         break;
     case 'input-string':
-        renderInputStringSite($currentSite, $statistics, $site);
+        renderInputStringSite($currentSite, $statistics);
         break;
     default:
         http_response_code(500);
