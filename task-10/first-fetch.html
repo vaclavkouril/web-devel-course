@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>First Fetch</title>
+</head>
+<body>
+    <button id="fetchButton">Action</button>
+    <div id="contentArea"></div>
+
+    <script>
+        document.getElementById("fetchButton").addEventListener("click", function() {
+            fetch('https://webik.ms.mff.cuni.cz/nswi142/practicals/script/10-anywhere-json.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("contentArea").innerText = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

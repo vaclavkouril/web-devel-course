@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Form</title>
+</head>
+<body>
+  <form id="main" method="POST" action="https://webik.ms.mff.cuni.cz/nswi142/practicals/script/10-form-processing.php" enctype="multipart/form-data">
+    <label>
+      Message:
+      <input type="text" name="message">
+    </label>
+    <input type="submit">
+  </form>
+  <div id="response"></div>
+<script type="text/javascript">
+  const form = document.forms["main"];
+  var responseDiv = document.getElementById("response");
+  // Add event listener for "submit" to form.
+  form.addEventListener("submit", async function(event) {
+    // DONE Prevent default action.
+    event.preventDefault();
+    // TODO Read content of the input element and change it to upper-case.
+    // const message = form.elements["message"].value;
+    const messageInput = form.elements["message"];
+    const message = messageInput.value.toUpperCase();
+    messageInput.value = message;
+    // TODO Submit the form using JavaScript nad FormData.
+    const formData = new FormData(form);
+    formData.append("message", message);
+    const result = await fetch("https://webik.ms.mff.cuni.cz/nswi142/practicals/script/10-form-processing.php",{
+      method: "POST",
+      body: formData
+    });
+    // TODO Retrieve response and show it as content of #response element.
+    const response = await result.Text();
+    responseDiv.textContent = response;
+  });
+</script>
+</body>
+</html>

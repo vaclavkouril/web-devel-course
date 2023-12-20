@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>My Catalog</title>
+  <style>
+    table, th, td { border: 1px solid black; }
+    table { border-collapse: collapse; }
+  </style>
+</head>
+<body>
+ <table id="data-table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+ </table>
+<script type="text/javascript">
+
+class Model {
+
+  async listItems() {
+    // TODO Implement this method so it fetch data from NKOD
+    // https://data.gov.cz/api/v2/dataset?language=cs&offset=0&limit=10
+    //
+    // This function must select all objects with "@type" == "Dataset",
+    // from each object it must select "title" and "description" and 
+    // return those two in an object. 
+    // {"title": "..", "description": ".."}
+    //
+
+    
+    const response = await fetch('https://data.gov.cz/api/v2/dataset?language=cs&offset=0&limit=10');
+    const data = await response.json();
+
+
+    const datasets = data['@graph'].filter(item => item['@type'] === 'Dataset');
+
+    const items = datasets.map(dataset => ({
+      title: dataset.title,
+      description: dataset.description || 'No description available'
+    }));
+
+    return items;
+  }
+}
+
+(function initialize() {
+
+  const model = new Model();
+
+  function addRow({title, description}) {
+     const titleElement = document.createElement("td");
+     titleElement.textContent = title;
+     
+     const descriptionElement = document.createElement("td");
+     descriptionElement.textContent = description;
+
+     const rowElement = document.createElement("tr");
+     rowElement.appendChild(titleElement);
+     rowElement.appendChild(descriptionElement);
+     document.getElementById("data-table").appendChild(rowElement);    
+  }
+
+  model.listItems().then((items) => items.forEach(addRow));  
+
+})();
+
+</script>
+</body>
+</html>
