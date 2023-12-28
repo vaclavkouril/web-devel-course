@@ -1,0 +1,62 @@
+[
+    {
+        "url": "similar/1.jpg",
+        "title": "similar 1",
+        "created": 1000,
+        "similar": [1]
+    },
+    {
+        "url": "similar/2.jpg",
+        "title": "similar 2",
+        "created": 1100,
+        "similar": []
+    },
+    {
+        "url": "similar/3.jpg",
+        "title": "similar 3",
+        "created": 1200,
+        "similar": [3]
+    },
+    {
+        "url": "similar/4.jpg",
+        "title": "similar 4",
+        "created": 1300,
+        "similar": []
+    },
+    {
+        "url": "nonsimilar/1.jpg",
+        "title": "nonsimilar 1",
+        "created": 1400,
+        "similar": [3,1]
+    },
+    {
+        "url": "similar/5.jpg",
+        "title": "similar 5",
+        "created": 1500,
+        "similar": []
+    },
+    {
+        "url": "similar/6.jpg",
+        "title": "similar 6",
+        "created": 1600,
+        "similar": []
+    },
+    {
+        "url": "similar/7.jpg",
+        "title": "similar 7",
+        "created": 1700,
+        "similar": []
+    },
+    {
+        "url": "nonsimilar/2.jpg",
+        "title": "nonsimilar 2",
+        "created": 1800,
+        "similar": []
+    },
+    {
+        "url": "nonsimilar/3.jpg",
+        "title": "nonsimilar 3",
+        "created": 1900,
+        "similar": []
+    }
+]
