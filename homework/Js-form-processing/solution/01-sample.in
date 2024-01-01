@@ -1,0 +1,233 @@
+[
+  {
+    "input": [
+      {
+        "name": "url_base",
+        "value": "https://recodex.mff.cuni.cz/api/v1/"
+      },
+      {
+        "name": "date",
+        "value": "17.11.2018"
+      },
+      {
+        "name": "time",
+        "value": "10:19"
+      },
+      {
+        "name": "repeat",
+        "value": "100"
+      },
+      {
+        "name": "url",
+        "value": "comments/"
+      },
+      {
+        "name": "method",
+        "value": "GET"
+      },
+      {
+        "name": "body",
+        "value": ""
+      },
+      {
+        "name": "date",
+        "value": "17.11.2018"
+      },
+      {
+        "name": "time",
+        "value": "10:21"
+      },
+      {
+        "name": "repeat",
+        "value": "2"
+      },
+      {
+        "name": "url",
+        "value": "comments/"
+      },
+      {
+        "name": "method",
+        "value": "POST"
+      },
+      {
+        "name": "body",
+        "value": "{\n   \"comment\": \"New comment\"\n}"
+      }
+    ],
+    "result": [
+      {
+        "date": 1542412800,
+        "time": 37140,
+        "repeat": 1,
+        "url": "https://recodex.mff.cuni.cz/api/v1/comments/",
+        "method": "GET",
+        "body": {}
+      },
+      {
+        "date": 1542412800,
+        "time": 37260,
+        "repeat": 2,
+        "url": "https://recodex.mff.cuni.cz/api/v1/comments/",
+        "method": "POST",
+        "body": {
+          "comment": "New comment"
+        }
+      }
+    ],
+    "errors": {}
+  },
+  {
+    "input": [
+      {
+        "name": "url_base",
+        "value": "https://recodex.mff.cuni.cz/api/v1/"
+      },
+      {
+        "name": "date",
+        "value": "2018-09-01"
+      },
+      {
+        "name": "time",
+        "value": "12:13:14"
+      },
+      {
+        "name": "repeat",
+        "value": "1"
+      },
+      {
+        "name": "url",
+        "value": "switch-semester"
+      },
+      {
+        "name": "method",
+        "value": "POST"
+      },
+      {
+        "name": "body",
+        "value": "{\n  \"year\": 2018,\n  \"semester\": 1\n}"
+      },
+      {
+        "name": "date",
+        "value": "11/1/2018"
+      },
+      {
+        "name": "time",
+        "value": "21:21 - 21:22"
+      },
+      {
+        "name": "repeat",
+        "value": "2"
+      },
+      {
+        "name": "url",
+        "value": "auth?what=cache&when=now"
+      },
+      {
+        "name": "method",
+        "value": "DELETE"
+      },
+      {
+        "name": "body",
+        "value": ""
+      }
+    ],
+    "result": [
+      {
+        "date": 1535760000,
+        "time": 43994,
+        "repeat": 1,
+        "url": "https://recodex.mff.cuni.cz/api/v1/switch-semester",
+        "method": "POST",
+        "body": {
+          "year": 2018,
+          "semester": 1
+        }
+      },
+      {
+        "date": 1541030400,
+        "time": {
+          "from": 76860,
+          "to": 76920
+        },
+        "repeat": 2,
+        "url": "https://recodex.mff.cuni.cz/api/v1/auth?what=cache&when=now",
+        "method": "DELETE",
+        "body": {}
+      }
+    ],
+    "errors": {}
+  },
+  {
+    "input": [
+      {
+        "name": "url_base",
+        "value": "https://recodex.mff.cuni.cz/api/v1/#fragment"
+      },
+      {
+        "name": "date",
+        "value": "2018-9-1"
+      },
+      {
+        "name": "time",
+        "value": "12:13:14 - 13:14:15"
+      },
+      {
+        "name": "repeat",
+        "value": "1"
+      },
+      {
+        "name": "url",
+        "value": "switch-semester"
+      },
+      {
+        "name": "method",
+        "value": "POST"
+      },
+      {
+        "name": "body",
+        "value": "{\n  \"year\": 2018,\n  \"semester\": 1,\n}"
+      },
+      {
+        "name": "date",
+        "value": "11/1/2018"
+      },
+      {
+        "name": "time",
+        "value": "21:21 - 21:00"
+      },
+      {
+        "name": "repeat",
+        "value": "2"
+      },
+      {
+        "name": "url",
+        "value": "auth?what=cache&when=?"
+      },
+      {
+        "name": "method",
+        "value": "DELETE"
+      },
+      {
+        "name": "body",
+        "value": ""
+      }
+    ],
+    "result": null,
+    "errors": {
+      "url_base": "Invalid URL format.",
+      "date": {
+        "0": "Invalid date format. Allowed formats a are d.m.yyyy, m/d/yyyy, and yyyy-mm-dd."
+      },
+      "body": {
+        "0": "The body must be either valid JSON or empty."
+      },
+      "time": {
+        "0": "Time interval is not allowed when there is only one repetition set.",
+        "1": "Invalid time or time interval format. Time must be in h:mm or h:mm:ss format, time interval are two times separated by dash."
+      },
+      "url": {
+        "1": "Invalid URL suffix format."
+      }
+    }
+  }
+]
