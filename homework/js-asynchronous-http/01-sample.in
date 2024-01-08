@@ -1,0 +1,91 @@
+[
+	{
+		"call": "getData",
+		"callback": [
+			[
+				{ "id": 42, "caption": "Procrastination", "hours": 2 },
+				{ "id": 54, "caption": "Chit chat", "hours": 3 }
+			]
+		],
+		"fetch": [
+			{
+				"query": {},
+				"method": "GET",
+				"payload": [
+					{ "id": 42, "caption": "Procrastination" },
+					{ "id": 54, "caption": "Chit chat" }
+				]
+			},
+			{
+				"query": { "action": "hours", "id": 42 },
+				"method": "GET",
+				"payload": { "id": 42, "caption": "Procrastination", "hours": 2 }
+			},
+			{
+				"query": { "action": "hours", "id": 54 },
+				"method": "GET",
+				"payload": { "id": 54, "caption": "Chit chat", "hours": 3 }
+			}
+		]
+	},
+	{
+		"call": "getData",
+		"callback": [
+			[
+				{ "id": 42, "caption": "Procrastination", "hours": 2 },
+				{ "id": 54, "caption": "Chit chat", "hours": 3 }
+			]
+		],
+		"fetch": []
+	},
+	{
+		"call": "setHours",
+		"args": [ 54, 5 ],
+		"callback": [],
+		"fetch": [
+			{
+				"query": { "action": "hours", "id": 54, "hours": 5 },
+				"method": "POST"
+			}
+		]
+	},
+	{
+		"call": "invalidate"
+	},
+	{
+		"call": "getData",
+		"callback": [
+			[
+				{ "id": 42, "caption": "Procrastination", "hours": 3 },
+				{ "id": 54, "caption": "Chit chat", "hours": 5 },
+				{ "id": 119, "caption": "Flirting", "hours": 1 }
+			]
+		],
+		"fetch": [
+			{
+				"query": {},
+				"method": "GET",
+				"payload": [
+					{ "id": 42, "caption": "Procrastination" },
+					{ "id": 54, "caption": "Chit chat" },
+					{ "id": 119, "caption": "Flirting" }
+				]
+			},
+			{
+				"query": { "action": "hours", "id": 42 },
+				"method": "GET",
+				"payload": { "id": 42, "caption": "Procrastination", "hours": 3 }
+			},
+			{
+				"query": { "action": "hours", "id": 54 },
+				"method": "GET",
+				"payload": { "id": 54, "caption": "Chit chat", "hours": 5 }
+			},
+			{
+				"query": { "action": "hours", "id": 119 },
+				"method": "GET",
+				"payload": { "id": 119, "caption": "Flirting", "hours": 1 }
+			}
+		]
+	}
+]
